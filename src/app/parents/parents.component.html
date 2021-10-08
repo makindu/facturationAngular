@@ -1,0 +1,90 @@
+<!-- <mat-accordion>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                CLASSES 1
+            </mat-panel-title>
+            <mat-panel-description>
+                CAPITAL...
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expension-panel-header>
+                        <mat-panel-title>
+                            COMPTE 1
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            RESULTAT
+                        </mat-panel-description>
+                    </mat-expension-panel-header>
+                    <p>Listes des sous comptes pour le compte Resultat</p>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </p>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                CLASSE 2
+            </mat-panel-title>
+            <mat-panel-description>
+                BANQUE...
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Les Comptes</p>
+    </mat-expansion-panel>
+</mat-accordion> -->
+
+<h2>GESTION DES PARENTS</h2>
+<app-search-parent></app-search-parent>
+<div>
+    <mat-card>
+        <mat-card-title><button mat-button (click)="newParentForm()">+ Nouveau parent</button></mat-card-title>
+    </mat-card>
+</div>
+
+<mat-card>
+    <mat-card-title>Nombre total : <span *ngIf="parents">{{parents.length}}</span></mat-card-title>
+    <mat-card-content>
+        <mat-form-field appearance="standard">
+            <mat-label>Rechercher</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex: Jesus sauve...." #input>
+        </mat-form-field>
+        <div class="mat-elevation-z8" *ngIf="dataSource; else showProgress">
+            <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>Actions</th>
+                    <td mat-cell *matCellDef="let parent">
+                        <a routerLink="/detail-parent/{{parent.id}}">Edit</a>|
+                        <a (click)="deleteParent(parent)">Delete</a>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                    <td mat-cell *matCellDef="let parent">{{parent.id}}</td>
+                </ng-container>
+                <ng-container matColumnDef="noms">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Noms</th>
+                    <td mat-cell *matCellDef="let parent">{{parent.noms}}</td>
+                </ng-container>
+                <ng-container matColumnDef="adresse">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Adresse</th>
+                    <td mat-cell *matCellDef="let parent">{{parent.adresse}}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns:displayedColumns;"></tr>
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">Aucune donnee a afficher pour {{input.value}}</td>
+                </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5,10,25,100]" aria-label="Select page of parents"></mat-paginator>
+        </div>
+        <ng-template #showProgress>
+            <mat-progress-bar mode="query"></mat-progress-bar>
+        </ng-template>
+    </mat-card-content>
+</mat-card>

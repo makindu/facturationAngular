@@ -1,0 +1,10 @@
+I. DASHBOARD
+- Afficher les dernieres factures entrantes (par rapport a la date du jour);
+- Avoir un search input pour rechercher une facture par numero,date,client...;
+
+II. TOUTES LES FACTURES
+
+- Afficher toutes les factures se trouvant dans la BD;
+    * Numero, date,montant,client;
+    * bouton edit,delete a la fin;
+- Au debut avoir un bouton nouvelle facture

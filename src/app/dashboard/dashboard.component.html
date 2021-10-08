@@ -1,0 +1,26 @@
+<mat-card>
+    <app-facture-search></app-facture-search>
+</mat-card>
+
+<mat-card class="example-card">
+    <mat-card-title>10 dernieres Factures creees</mat-card-title>
+    <mat-card-subtitle>Aujourdhui {{today | date}}</mat-card-subtitle>
+    <mat-card-content>
+        <div *ngIf="factures.length>0; else IfnotFacture">
+            <mat-card *ngFor="let facture of factures" routerLink="/facture/{{facture.id}}" class="matcard">
+                <mat-card-title>{{facture.datefacture | date}}</mat-card-title>
+                <mat-card-subtitle>{{facture.client | titlecase}}</mat-card-subtitle>
+                <mat-card-content>
+                    {{facture.numero}} ({{facture.pt}} $)
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <ng-template #IfnotFacture>
+            <mat-progress-bar mode="buffer"></mat-progress-bar>
+        </ng-template>
+    </mat-card-content>
+    <mat-card-actions>
+
+    </mat-card-actions>
+</mat-card>

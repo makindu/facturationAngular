@@ -1,0 +1,10 @@
+body{
+    height: 100%;
+}
+mat-sidenav-container{
+    height: 100%;
+}
+a,span{
+    color: blanchedalmond;
+    text-transform: uppercase;
+}

@@ -1,0 +1,25 @@
+<mat-card>
+
+    <mat-card-title>
+        <h2>Detail du parent : <span *ngIf="parent">{{parent.noms |uppercase}}</span></h2>
+    </mat-card-title>
+    <mat-card-content>
+        <div class="example-container">
+            <form [formGroup]="updateParentForm" *ngIf="parent">
+                <mat-form-field>
+                    <mat-label>Noms :</mat-label>
+                    <input matInput type="text" id="noms" formControlName="noms" [(ngModel)]="parent.noms">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Adresse :</mat-label>
+                    <input matInput type="text" id="adresse" formControlName="adresse" [(ngModel)]="parent.adresse">
+                </mat-form-field>
+                <button mat-flat-button color="primary" (click)="updateParent()">Modifier</button>
+            </form>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+
+        <button mat-fab color="warn" (click)="goBack()">Retour</button>
+    </mat-card-actions>
+</mat-card>

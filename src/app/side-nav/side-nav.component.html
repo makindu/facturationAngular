@@ -1,0 +1,27 @@
+<mat-nav-list>
+    <mat-list-item>
+        <mat-icon mat-list-icon class="chevron-button sidenav-button" (click)="isExpanded = !isExpanded"
+            [ngClass]="{'rotaded': isExpanded}">chevron_right</mat-icon>
+    </mat-list-item>
+
+    <mat-list-item [routerLink]="'dashboard'">
+        <mat-icon mat-list-icon>dashboard</mat-icon>
+        <span *ngIf="isExpanded">Dashboard</span>
+    </mat-list-item>
+
+    <mat-list-item [routerLink]="'parents'">
+        <mat-icon mat-list-icon>family_restroom</mat-icon>
+        <span *ngIf="isExpanded">Parents</span>
+    </mat-list-item>
+
+    <mat-list-item [routerLink]="'factures'">
+        <mat-icon mat-list-icon>request_quote</mat-icon>
+        <span *ngIf="isExpanded">Factures</span>
+    </mat-list-item>
+
+    <mat-list-item [routerLink]="'plancomptable'">
+        <mat-icon mat-list-icon>account_balance_wallet</mat-icon>
+        <span *ngIf="isExpanded">Plan Comptable</span>
+    </mat-list-item>
+
+</mat-nav-list>

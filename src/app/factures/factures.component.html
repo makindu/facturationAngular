@@ -1,0 +1,54 @@
+<mat-card>
+    <mat-card-title>Liste de toutes les factures</mat-card-title>
+    <mat-card-subtitle><span matBadge="{{factures.length}}" matBadgeOverlap="false">Nombre Total Nombre Total</span>
+    </mat-card-subtitle>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" aria-label="Ajouter une nouvelle Facture">
+            <mat-icon>plus_one</mat-icon>
+        </button>
+        <button mat-mini-fab color="accent">
+            <mat-icon>filter_list</mat-icon>
+        </button>
+    </mat-card-actions>
+    <mat-card-content>
+
+        <div *ngIf="factures.length>0; else showProgress">
+            <mat-card>
+                <mat-form-field appearance="standard">
+                    <mat-label>Filter le Tableau</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="ex. Fabrice " #input>
+                </mat-form-field>
+                <table mat-table [dataSource]="factures" matSort>
+                    <ng-container matColumnDef="numero">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Numero</th>
+                        <td mat-cell *matCellDef="let facture">{{facture.numero}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="article">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+                        <td mat-cell *matCellDef="let facture">{{facture.article}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="facture">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Facture</th>
+                        <td mat-cell *matCellDef="let facture">{{facture.factureid}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="montant">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Montant</th>
+                        <td mat-cell *matCellDef="let facture">{{facture.pt}}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">Aucune donnee trouvee</td>
+                    </tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5,10,25,100]" aria-label="Select page of factures">
+                </mat-paginator>
+            </mat-card>
+        </div>
+        <ng-template #showProgress>
+            <mat-progress-bar mode="query"></mat-progress-bar>
+        </ng-template>
+    </mat-card-content>
+</mat-card>

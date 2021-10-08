@@ -1,0 +1,14 @@
+<mat-card>
+    <div id="search-component">
+        <label for="search-box">Rechercher</label>
+        <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+
+        <ul class="search-result">
+            <li *ngFor="let parent of parents$ | async">
+                <a routerLink="/detail-parent/{{parent.id}}">
+                    {{parent.noms}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</mat-card>

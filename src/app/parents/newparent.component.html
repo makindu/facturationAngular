@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>+ Nouveau Parent <span *ngIf="parents">{{parents.length}}</span></h2>
+<mat-dialog-content class="mat-typography">
+    <h3>Entrer les informations du nouveau parent</h3>
+    <form [formGroup]="ParentForm">
+        <mat-form-field>
+            <mat-label>Noms :</mat-label>
+            <input matInput type="text" id="noms" formControlName="noms" cdkFocusInitial>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Adresse :</mat-label>
+            <input matInput type="text" id="adresse" formControlName="adresse">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-flat-button (click)="addParent()">Creer</button>
+</mat-dialog-actions>

@@ -1,0 +1,7 @@
+<div *ngIf="facture">
+    <h2>Detail facture :{{facture.numero}} </h2>
+    <div><span>Client : {{facture.client | uppercase}}</span></div>
+    <div>Autres donnees pour l'edition</div>
+    <button (click)="goBack()">Retour</button>
+    <button (click)="save()">Modifier</button>
+</div>
